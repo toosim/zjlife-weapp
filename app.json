@@ -1,0 +1,12 @@
+{
+  "pages":[
+    "pages/index/index",
+    "pages/logs/logs"
+  ],
+  "window":{
+    "backgroundTextStyle":"light",
+    "navigationBarBackgroundColor": "#2d2f3b",
+    "navigationBarTitleText": "至简生活+",
+    "navigationBarTextStyle":"#fff"
+  }
+}
