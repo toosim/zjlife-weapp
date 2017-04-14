@@ -9,7 +9,7 @@
         </view>
       </view>
       <view class="middle">
-        <image src="../../image/white/{{weather.today.typeIcon}}"></image>
+        <image wx:if="{{weather.today.typeIcon.length > 0}}" src="../../image/white/{{weather.today.typeIcon}}"></image>
         <view class="type-text">{{weather.today.typeText}}</view>
       </view>
       <view class="bottom">
@@ -25,7 +25,7 @@
         <view wx:for="{{weather.futureList}}" wx:key="futureList" class="scroll-view-item">
           <view class="top aligncenter">{{item.week}}</view>
           <view class="middle aligncenter">
-            <image src="../../image/black/{{item.type}}"></image>
+            <image wx:if="{{item.type.length > 0}}" src="../../image/black/{{item.type}}"></image>
           </view>
           <view class="futuretype-text">{{item.typeTetx}}</view>  
           <view class="bottom aligncenter">{{item.wendu}}</view>

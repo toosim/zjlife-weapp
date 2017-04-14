@@ -28,24 +28,24 @@ view{box-sizing: border-box;font-family: "Microsoft YaHei"}
   background: linear-gradient(0deg, rgba(255,59,57,1) 0%, rgba(255,139,45,1) 100%);
 }
 .background-dayu{
-  background-image: url('https://www.tuchuang001.com/images/2017/04/13/dayu.gif');
+  background-image: url('https://www.tuchuang001.com/images/2017/04/14/dayu.gif');
   background-repeat: no-repeat;
-  background-size: 100% 100%;
+  background-size: cover;
 }
 .background-xiaoyu{
-  background-image: url('https://www.tuchuang001.com/images/2017/04/13/xiaoyu.jpg');
+  background-image: url('https://www.tuchuang001.com/images/2017/04/14/xiaoyu.jpg');
   background-repeat: no-repeat;
-  background-size: 100% 100%;
+  background-size: cover;
 }
 .background-leizhenyu{
-  background-image: url('https://www.tuchuang001.com/images/2017/04/13/leizhenyu.gif');
+  background-image: url('https://www.tuchuang001.com/images/2017/04/14/leizhenyu.gif');
   background-repeat: no-repeat;
-  background-size: 100% 100%;
+  background-size: cover;
 }
 .background-qing{
-  background-image: url('https://www.tuchuang001.com/images/2017/04/13/qing.jpg');
+  background-image: url('https://www.tuchuang001.com/images/2017/04/14/qing.jpg');
   background-repeat: no-repeat;
-  background-size: 100% 100%;
+  background-size: cover;
 }
 
 .other{width: 100%;height: 40%;background: #fff;}
