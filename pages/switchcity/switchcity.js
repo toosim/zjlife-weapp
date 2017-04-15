@@ -1,3 +1,4 @@
+var WxNotificationCenter = require("../../utils/WxNotificationCenter.js")
 var city = require('../../utils/city.js')
 var app = getApp()
 
@@ -113,6 +114,8 @@ Page({
   sureCity: function (data) {    
     app.appData.selectedCity = data.city
     app.appData.selectedCityCode = data.selectedCityCode
+
+    WxNotificationCenter.postNotificationName("citySelectedNotificatione")
 
     wx.navigateBack({
       delta: 1, // 回退前 delta(默认为1) 页面

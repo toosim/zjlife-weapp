@@ -3,6 +3,7 @@
 var app = getApp()
 var amapKey = '356499998b0159a49c7468a6301a5efc'
 var amapFile = require('../../utils/amap-wx.js')
+var WxNotificationCenter = require("../../utils/WxNotificationCenter.js")
 
 Page({
   data: {
@@ -10,11 +11,10 @@ Page({
     currentCity: '上海市'
   },
   onLoad: function () {
-
-  },
-  onShow: function () {
-    var that = this;
+    var that = this
     that.loadWeather()
+
+    WxNotificationCenter.addNotification("citySelectedNotificatione", that.loadWeather, that)
   },
   refresh: function () {
     this.loadWeather()
@@ -88,6 +88,7 @@ Page({
       "大雨": "background-dayu",
       "中雨": "background-dayu",
       "小雨": "background-xiaoyu",
+      "阵雨": "background-xiaoyu",
       "暴雨": "background-dayu",
       "雷阵雨": "background-leizhenyu",
       "晴": "background-qing",
