@@ -7,7 +7,7 @@ var WxNotificationCenter = require("../../utils/WxNotificationCenter.js")
 
 Page({
   data: {
-    Loadinghidden: true,
+    Loadinghidden: false,
     currentCity: '上海市'
   },
   onLoad: function () {
@@ -27,6 +27,10 @@ Page({
       that.updateCurrentWeather(selectedCity, selectedCity)
       return
     }
+
+    that.setData({
+      Loadinghidden: false
+    })
 
     var myAmapFun = new amapFile.AMapWX({ key: amapKey })
     myAmapFun.getRegeo({
