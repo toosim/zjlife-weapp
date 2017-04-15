@@ -6,16 +6,61 @@ var amapFile = require('../../utils/amap-wx.js')
 
 Page({
   data: {
-    Loadinghidden: true
+    Loadinghidden: true,
+    currentCity: '上海市'
   },
   onLoad: function () {
+
+  },
+  onShow: function () {
     var that = this;
-    that.loadWeather();
+    that.loadWeather()
   },
   refresh: function () {
-    this.loadWeather();
+    this.loadWeather()
   },
   loadWeather: function () {
+    var that = this
+
+    var selectedCity = app.appData.selectedCity
+    if (selectedCity.length) {
+      that.updateCurrentWeather(selectedCity, selectedCity)
+      return
+    }
+
+    var myAmapFun = new amapFile.AMapWX({ key: amapKey })
+    myAmapFun.getRegeo({
+      success: function (data) {
+        var addressComponent = data[0].regeocodeData.addressComponent;
+
+        var country = addressComponent.country
+        var province = addressComponent.province
+        var city = addressComponent.city.length ? addressComponent.city : addressComponent.province
+        var district = addressComponent.district
+
+        that.updateCurrentWeather(city, district + ' ' + city)
+      },
+      fail: function (info) {
+        //失败回调
+        console.log(info)
+
+        wx.showModal({
+          title: '错误提示',
+          content: err.errMsg,
+          showCancel: false,
+          confirmText: '我知道了'
+        })
+      },
+      complete: function () {
+        that.setData({
+          Loadinghidden: true
+        });
+      }
+    })
+  },
+
+  // 请求当前城市数据
+  updateCurrentWeather: function (city, locationText) {
     var that = this;
     that.setData({
       Loadinghidden: false
@@ -45,88 +90,94 @@ Page({
       "小雨": "background-xiaoyu",
       "暴雨": "background-dayu",
       "雷阵雨": "background-leizhenyu",
-      "晴": "background-qing"
+      "晴": "background-qing",
+      "阴": "background-yin",
+      "多云": "background-duoyun",
+      "雾": "background-wu",
+      "雾": "background-wu",
+      "小雪": "background-xue",
+      "大雪": "background-xue",
+      "暴雪": "background-xue"
     };
 
-    var that = this
-    var myAmapFun = new amapFile.AMapWX({ key: amapKey })
-    myAmapFun.getRegeo({
-      success: function (data) {
-        //成功回调
-        var addressComponent = data[0].regeocodeData.addressComponent;
-        var city = addressComponent.district;
-        weather.city = city;
+    weather.city = city
+    weather.location = locationText
 
-        wx.request({
-          url: 'https://json.foxser.me/weather_mini.php',
-          method: 'POST',
-          data: {
-            'city': city
-            },
-          header: {
-            'content-type': 'application/json'
-          },
-          success: function (res) {
-            var data = res.data;
-            if (data.status === 1000) {
-              var today = {};
-              today.wendu = data.data.wendu;          //温度
-              var forecast = data.data.forecast;      //天气特征与未来天气
-              var todayWeather = forecast[0];         //今天的天气
-              today.low = todayWeather.low.split(' ')[1];    //最低温
-              today.high = todayWeather.high.split(' ')[1];  //最高温
-              var typeText = todayWeather.type;
-              today.typeText = typeText;                     //天气类型说明
-              today.week = todayWeather.date.slice(3);       //星期几
-              today.typeIcon = typeIcon[typeText];           //天气类型图片
-              if (background[typeText]) {
-                today.typeBackgorund = background[typeText];
-              } else {
-                today.typeBackgorund = "background-default";
-              }
-              weather.today = today;
-
-              //下周天气、未来天气
-              var temp, futureList = [];
-              for (var i = 1; i < forecast.length; i++) {
-                temp = forecast[i];
-                var future = {};
-                future.week = temp.date.slice(3);
-                future.type = typeIcon[temp.type];
-                var wendurange = temp.low.split(' ')[1] + "-" + temp.high.split(' ')[1];
-                future.wendu = wendurange;
-                future.typeTetx = temp.type;
-                futureList.push(future);
-              }
-
-              weather.futureList = futureList;
-              console.info(weather);
-              that.setData({
-                addressComponent: addressComponent,
-                weather: weather,
-                Loadinghidden: true
-              });
-            }
-          },
-          fail: function (err) {
-            console.error(err);
-
-            wx.showModal({
-              title: '错误提示',
-              content: err.desc,
-              showCancel: false,
-              confirmText: '我知道了'
-            })
-          }
-        });
+    wx.request({
+      url: 'https://json.foxser.me/weather_mini.php',
+      method: 'POST',
+      data: {
+        'city': city
       },
-      fail: function (info) {
-        //失败回调
-        console.log(info)
+      header: {
+        'content-type': 'application/json'
+      },
+      success: function (res) {
+        var data = res.data
+        if (data.status === 1000) {
+          var today = {}
+          today.wendu = data.data.wendu          //温度
+          var forecast = data.data.forecast      //天气特征与未来天气
+          var todayWeather = forecast[0]         //今天的天气
+          today.low = todayWeather.low.split(' ')[1]    //最低温
+          today.high = todayWeather.high.split(' ')[1]  //最高温
+          var typeText = todayWeather.type
+          today.typeText = typeText                     //天气类型说明
+          today.week = todayWeather.date.slice(3)       //星期几
+          today.typeIcon = typeIcon[typeText]           //天气类型图片
+          if (background[typeText]) {
+            today.typeBackgorund = background[typeText]
+          } else {
+            today.typeBackgorund = "background-default"
+          }
+          weather.today = today
+
+          //下周天气、未来天气
+          var temp, futureList = []
+          for (var i = 1; i < forecast.length; i++) {
+            temp = forecast[i]
+            var future = {}
+            future.week = temp.date.slice(3)
+            future.type = typeIcon[temp.type]
+            var wendurange = temp.low.split(' ')[1] + "-" + temp.high.split(' ')[1]
+            future.wendu = wendurange
+            future.typeTetx = temp.type
+            futureList.push(future)
+          }
+
+          weather.futureList = futureList
+          that.setData({
+            weather: weather,
+            Loadinghidden: true,
+            currentCity: city
+          })
+        } else {
+          that.setData({
+            Loadinghidden: true
+          })
+
+          wx.showModal({
+            title: '错误提示',
+            content: '暂不支持该城市',
+            showCancel: false,
+            confirmText: '我知道了'
+          })
+
+          // 出现错误 则清空当前城市
+          app.appData.selectedCity = ''
+          app.appData.selectedCityCode = ''
+        }
+      },
+      fail: function (err) {
+        console.error(err)
+
+        that.setData({
+          Loadinghidden: true
+        })
 
         wx.showModal({
           title: '错误提示',
-          content: err.errMsg,
+          content: err.desc,
           showCancel: false,
           confirmText: '我知道了'
         })
@@ -134,12 +185,27 @@ Page({
     })
   },
 
+  switchCity: function () {
+    wx.navigateTo({
+      url: '/pages/switchcity/switchcity?city=' + this.data.currentCity,
+      success: function (res) {
+        // success
+      },
+      fail: function (res) {
+        // fail
+      },
+      complete: function (res) {
+        // complete
+      }
+    })
+  },
+
   onShareAppMessage: function () {
     return {
-      title: '至简生活+',
+      title: '致简生活',
       desc: '让你的生活，像呼吸一样简单！',
       path: '/pages/index/index',
-      success: function(res) {
+      success: function (res) {
         // 分享成功
         wx.showModal({
           title: '分享成功',
@@ -148,7 +214,7 @@ Page({
           confirmText: '我知道了'
         })
       },
-      fail: function(res) {
+      fail: function (res) {
         // 分享失败
         wx.showModal({
           title: '温馨提示',

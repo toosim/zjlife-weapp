@@ -1,12 +1,18 @@
 {
   "pages":[
     "pages/index/index",
-    "pages/logs/logs"
+    "pages/switchcity/switchcity"
   ],
   "window":{
     "backgroundTextStyle":"light",
     "navigationBarBackgroundColor": "#2d2f3b",
-    "navigationBarTitleText": "至简生活+",
+    "navigationBarTitleText": "致简生活",
     "navigationBarTextStyle":"#fff"
+  },
+  "networkTimeout": {
+    "request": 20000,
+    "connectSocket": 20000,
+    "uploadFile": 20000,
+    "downloadFile": 20000
   }
 }

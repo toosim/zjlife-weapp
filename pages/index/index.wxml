@@ -16,7 +16,7 @@
         <view class="temp">{{weather.today.wendu}}°C</view>
         <view class="city-day">
           <view class="day">{{weather.today.week}}</view>
-          <view class="city">{{weather.city}} {{addressComponent.province}}</view>
+          <view class="city" bindtap="switchCity">{{weather.location}}</view>
         </view>
       </view>
     </view>

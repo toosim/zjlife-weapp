@@ -26,5 +26,11 @@ App({
   },
   globalData:{
     userInfo:null
+  },
+  
+  // APP 全局数据
+  appData: {
+    selectedCity: '',
+    selectedCityCode: ''
   }
 })
