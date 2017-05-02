@@ -1,3 +1,4 @@
+
 <!--index.wxml-->
 <view class="container">
   <view class="weather-card">
@@ -27,15 +28,12 @@
           <view class="middle aligncenter">
             <image wx:if="{{item.type.length > 0}}" src="../../image/black/{{item.type}}"></image>
           </view>
-          <view class="futuretype-text">{{item.typeTetx}}</view>  
+          <view class="futuretype-text">{{item.typeTetx}}</view>
           <view class="bottom aligncenter">{{item.wendu}}</view>
         </view>
       </scroll-view>
     </view>
   </view>
-</view>
-
-<view class="body-view">
   <loading hidden="{{Loadinghidden}}">
     加载中...
   </loading>
