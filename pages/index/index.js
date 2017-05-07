@@ -111,8 +111,8 @@ Page({
     weather.location = locationText
 
     wx.request({
-      url: 'https://json.foxser.me/weather_mini.php',
-      method: 'POST',
+      url: 'http://127.0.0.1:8080/v1/weather/weatherInfo',
+      method: 'GET',
       data: {
         'city': city
       },
@@ -121,16 +121,17 @@ Page({
       },
       success: function (res) {
         var data = res.data
-        if (data.status === 1000) {
+        if (data.code == 10000) {
           var today = {}
-          today.wendu = data.data.wendu          //温度
-          var forecast = data.data.forecast      //天气特征与未来天气
+          today.wendu = data.data.live.temperature          //温度
+          var forecast = data.data.forecasts      //天气特征与未来天气
+          var todayLive = data.data.live  // 今天的实时天气
           var todayWeather = forecast[0]         //今天的天气
-          today.low = todayWeather.low.split(' ')[1]    //最低温
-          today.high = todayWeather.high.split(' ')[1]  //最高温
-          var typeText = todayWeather.type
+          today.low = todayWeather.nighttemp + "℃"    //最低温
+          today.high = todayWeather.daytemp + "℃"  //最高温
+          var typeText = todayLive.weather
           today.typeText = typeText                     //天气类型说明
-          today.week = todayWeather.date.slice(3)       //星期几
+          today.week = todayWeather.week       //星期几
           today.typeIcon = typeIcon[typeText]           //天气类型图片
           if (background[typeText]) {
             today.typeBackgorund = background[typeText]
@@ -144,11 +145,11 @@ Page({
           for (var i = 1; i < forecast.length; i++) {
             temp = forecast[i]
             var future = {}
-            future.week = temp.date.slice(3)
-            future.type = typeIcon[temp.type]
-            var wendurange = temp.low.split(' ')[1] + "-" + temp.high.split(' ')[1]
+            future.week = temp.week
+            future.type = typeIcon[temp.dayweather]
+            var wendurange = temp.nighttemp + "℃" + "-" + temp.daytemp + "℃"
             future.wendu = wendurange
-            future.typeTetx = temp.type
+            future.typeTetx = temp.dayweather
             futureList.push(future)
           }
 
