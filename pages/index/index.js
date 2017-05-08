@@ -111,7 +111,7 @@ Page({
     weather.location = locationText
 
     wx.request({
-      url: 'http://127.0.0.1:8080/v1/weather/weatherInfo',
+      url: 'https://tolife.yuhanle.com/v1/weather/weatherInfo',
       method: 'GET',
       data: {
         'city': city

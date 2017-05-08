@@ -22,8 +22,7 @@
       </view>
     </view>
     <view class="other">
-      <scroll-view scroll-x="true">
-        <view wx:for="{{weather.futureList}}" wx:key="futureList" class="scroll-view-item">
+        <view wx:for="{{weather.futureList}}" wx:key="futureList" class="item">
           <view class="top aligncenter">{{item.week}}</view>
           <view class="middle aligncenter">
             <image wx:if="{{item.type.length > 0}}" src="../../image/black/{{item.type}}"></image>
@@ -31,7 +30,6 @@
           <view class="futuretype-text">{{item.typeTetx}}</view>
           <view class="bottom aligncenter">{{item.wendu}}</view>
         </view>
-      </scroll-view>
     </view>
   </view>
   <loading hidden="{{Loadinghidden}}">
