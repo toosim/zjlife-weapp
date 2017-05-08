@@ -1,5 +1,4 @@
 /**app.wxss**/
-
 .aligncenter {
   display: flex;
   justify-content: center;

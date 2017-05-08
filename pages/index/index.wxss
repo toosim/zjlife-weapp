@@ -79,6 +79,11 @@
   left: 0;
   width: 100%;
   padding: 10px 10px;
+  background:rgba(0, 0, 0, 0.4) none repeat scroll 0 0 !important;
+  /* for IE */
+  /*filter:alpha(opacity=60);*/
+  /* CSS3 standard */
+  /*opacity:0.6;*/
 }
 
 .today .top .range {
@@ -140,13 +145,13 @@
   margin-top: 5px;
 }
 
-.other scroll-view {
-  height: 100%;
+.other {
+  height: 40%;
   width: 100%;
   white-space: nowrap;
 }
 
-.other scroll-view .scroll-view-item {
+.other .item {
   width: 33.33%;
   height: 100%;
   display: inline-block;
@@ -154,29 +159,29 @@
   color: #bbb;
 }
 
-.other scroll-view .scroll-view-item .top {
+.other .item .top {
   width: 100%;
   height: 25%;
   font-size: 48rpx;
 }
 
-.other scroll-view .scroll-view-item .middle {
+.other .item .middle {
   width: 100%;
   height: 40%;
 }
 
-.other scroll-view .scroll-view-item .middle image {
+.other .item .middle image {
   width: 120rpx;
   height: 120rpx;
   opacity: 0.5;
 }
 
-.other scroll-view .scroll-view-item .futuretype-text {
+.other .item .futuretype-text {
   text-align: center;
   height: 10%;
 }
 
-.other scroll-view .scroll-view-item .bottom {
+.other .item .bottom {
   width: 100%;
   height: 25%;
   font-size: 44rpx;

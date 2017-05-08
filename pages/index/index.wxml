@@ -14,7 +14,7 @@
         <view class="type-text">{{weather.today.typeText}}</view>
       </view>
       <view class="bottom">
-        <view class="temp">{{weather.today.wendu}}°C</view>
+        <view class="temp">{{weather.today.wendu}}℃</view>
         <view class="city-day">
           <view class="day">{{weather.today.week}}</view>
           <view class="city" bindtap="switchCity">{{weather.location}}</view>
@@ -22,8 +22,7 @@
       </view>
     </view>
     <view class="other">
-      <scroll-view scroll-x="true">
-        <view wx:for="{{weather.futureList}}" wx:key="futureList" class="scroll-view-item">
+        <view wx:for="{{weather.futureList}}" wx:key="futureList" class="item">
           <view class="top aligncenter">{{item.week}}</view>
           <view class="middle aligncenter">
             <image wx:if="{{item.type.length > 0}}" src="../../image/black/{{item.type}}"></image>
@@ -31,7 +30,6 @@
           <view class="futuretype-text">{{item.typeTetx}}</view>
           <view class="bottom aligncenter">{{item.wendu}}</view>
         </view>
-      </scroll-view>
     </view>
   </view>
   <loading hidden="{{Loadinghidden}}">
