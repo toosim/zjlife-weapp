@@ -4,7 +4,7 @@
   <view class="weather-card">
     <view class="today {{weather.today.typeBackgorund}}">
       <view class="top">
-        <view class="range">{{weather.today.low}} ~ {{weather.today.high}}</view>
+        <view class="range" wx:if="{{weather.today}}">{{weather.today.low}} ~ {{weather.today.high}}</view>
         <view class="refresh" bindtap="refresh">
           <image src="../../image/white/refesh.png"></image>
         </view>

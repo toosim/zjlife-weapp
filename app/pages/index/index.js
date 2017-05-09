@@ -4,6 +4,7 @@ var app = getApp()
 var amapKey = '356499998b0159a49c7468a6301a5efc'
 var amapFile = require('../../utils/amap-wx.js')
 var WxNotificationCenter = require("../../utils/WxNotificationCenter.js")
+var config = require('../../config.js')
 
 Page({
   data: {
@@ -101,7 +102,6 @@ Page({
       "阴": "background-yin",
       "多云": "background-duoyun",
       "雾": "background-wu",
-      "雾": "background-wu",
       "小雪": "background-xue",
       "大雪": "background-xue",
       "暴雪": "background-xue"
@@ -111,7 +111,7 @@ Page({
     weather.location = locationText
 
     wx.request({
-      url: 'https://tolife.yuhanle.com/v1/weather/weatherInfo',
+      url: config.service.requestUrl + '/weather/weatherInfo',
       method: 'GET',
       data: {
         'city': city
@@ -120,6 +120,19 @@ Page({
         'content-type': 'application/json'
       },
       success: function (res) {
+        if (res.statusCode != 200) {
+          that.setData({
+            Loadinghidden: true
+          })
+          
+          wx.showModal({
+            title: '提示',
+            content: '服务器错误'
+          })
+
+          return;
+        }
+
         var data = res.data
         if (data.code == 10000) {
           var today = {}

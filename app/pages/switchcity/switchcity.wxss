@@ -1,4 +1,13 @@
 
+view{
+    margin: 0;
+    padding: 0;
+}
+
+.box{
+    margin-bottom: 20px;
+}
+
 page{background: #fff;height: 100%;}
 
 .searchLetter {

@@ -1,4 +1,19 @@
 /**index.wxss**/
+page {
+  background: #fff;
+  height: 100%;
+}
+
+view {
+  box-sizing: border-box;
+  font-family: "Microsoft YaHei";
+}
+
+.aligncenter {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 
 .weather-card {
   width: 100%;
@@ -19,20 +34,26 @@
   background: linear-gradient(0deg, rgba(255, 59, 57, 1) 0%, rgba(255, 139, 45, 1) 100%);
 }
 
-.background-dayu {
-  background-image: url('http://omiz2siz5.bkt.clouddn.com/zj-weapp/dayu.gif');
-  background-repeat: no-repeat;
-  background-size: cover;
-}
-
 .background-xiaoyu {
   background-image: url('http://omiz2siz5.bkt.clouddn.com/zj-weapp/xiaoyu.jpg');
   background-repeat: no-repeat;
   background-size: cover;
 }
 
+.background-dayu {
+  background-image: url('http://7xqhcq.com1.z0.glb.clouddn.com/zj-weapp/thunderstorm-358992_1280.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.background-xiaoyu {
+  background-image: url('http://7xqhcq.com1.z0.glb.clouddn.com/zj-weapp/rain-985874_1280.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
 .background-leizhenyu {
-  background-image: url('http://omiz2siz5.bkt.clouddn.com/zj-weapp/leizhenyu.gif');
+  background-image: url('http://7xqhcq.com1.z0.glb.clouddn.com/zj-weapp/lightning-2102435_1920.jpg');
   background-repeat: no-repeat;
   background-size: cover;
 }
@@ -79,7 +100,7 @@
   left: 0;
   width: 100%;
   padding: 10px 10px;
-  background:rgba(0, 0, 0, 0.4) none repeat scroll 0 0 !important;
+  /*background:rgba(0, 0, 0, 0.4) none repeat scroll 0 0 !important;*/
   /* for IE */
   /*filter:alpha(opacity=60);*/
   /* CSS3 standard */

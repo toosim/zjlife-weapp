@@ -1,0 +1,40 @@
+{
+  "pages":[
+    "pages/index/index",
+    "pages/switchcity/switchcity",
+    "pages/express/index",
+    "pages/express/detail"
+  ],
+  "window":{
+    "backgroundTextStyle":"light",
+    "navigationBarBackgroundColor": "#2d2f3b",
+    "navigationBarTitleText": "致简生活",
+    "navigationBarTextStyle": "white"
+  },
+  "tabBar": {
+    "color": "#323232",
+    "selectedColor": "#EF6262",
+    "borderStyle": "dark",
+    "backgroundColor": "#ffffff",
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "text": "天气预报",
+        "iconPath": "image/tabbar/weather.png",
+        "selectedIconPath": "image/tabbar/weather_select.png"
+      },
+      {
+        "pagePath": "pages/express/index",
+        "text": "查快递",
+        "iconPath": "image/tabbar/express.png",
+        "selectedIconPath": "image/tabbar/express_select.png"
+      }
+    ]
+  },
+  "networkTimeout": {
+    "request": 20000,
+    "connectSocket": 20000,
+    "uploadFile": 20000,
+    "downloadFile": 20000
+  }
+}
