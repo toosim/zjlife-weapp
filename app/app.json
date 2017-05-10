@@ -3,7 +3,8 @@
     "pages/index/index",
     "pages/switchcity/switchcity",
     "pages/express/index",
-    "pages/express/detail"
+    "pages/express/detail",
+    "pages/toilet/toilet"
   ],
   "window":{
     "backgroundTextStyle":"light",
@@ -19,9 +20,15 @@
     "list": [
       {
         "pagePath": "pages/index/index",
-        "text": "天气预报",
+        "text": "知天气",
         "iconPath": "image/tabbar/weather.png",
         "selectedIconPath": "image/tabbar/weather_select.png"
+      },
+      {
+        "pagePath": "pages/toilet/toilet",
+        "text": "找厕所",
+        "iconPath": "image/tabbar/toilet.png",
+        "selectedIconPath": "image/tabbar/toilet_select.png"
       },
       {
         "pagePath": "pages/express/index",

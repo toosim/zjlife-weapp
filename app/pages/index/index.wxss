@@ -25,7 +25,7 @@ view {
 
 .today {
   width: 100%;
-  height: 60%;
+  height: 64%;
   position: relative;
   text-align: center;
 }
@@ -90,7 +90,7 @@ view {
 
 .other {
   width: 100%;
-  height: 40%;
+  height: 36%;
   background: #fff;
 }
 
@@ -99,7 +99,7 @@ view {
   top: 0;
   left: 0;
   width: 100%;
-  padding: 10px 10px;
+  padding: 5px 10px;
   /*background:rgba(0, 0, 0, 0.4) none repeat scroll 0 0 !important;*/
   /* for IE */
   /*filter:alpha(opacity=60);*/
@@ -108,19 +108,19 @@ view {
 }
 
 .today .top .range {
-  font-size: 50rpx;
+  font-size: 40rpx;
   color: #fff;
   float: left;
 }
 
 .today .top .refresh {
   float: right;
-  line-height: 27px;
+  line-height: 20px;
 }
 
 .today .top .refresh image {
-  width: 50rpx;
-  height: 50rpx;
+  width: 40rpx;
+  height: 40rpx;
   vertical-align: middle;
 }
 
@@ -137,6 +137,11 @@ view {
   height: 250rpx;
 }
 
+.today .middle .type-text {
+  font-size: 40rpx;
+  margin-top: 10px;
+}
+
 .today .bottom {
   width: 100%;
   position: absolute;
@@ -147,7 +152,7 @@ view {
 }
 
 .today .bottom .temp {
-  font-size: 125rpx;
+  font-size: 108rpx;
   float: left;
   text-align: left;
 }
@@ -158,16 +163,17 @@ view {
 }
 
 .today .bottom .city-day .day {
-  font-size: 70rpx;
+  font-size: 50rpx;
 }
 
 .today .bottom .city-day .city {
   font-size: 35rpx;
   margin-top: 5px;
+  margin-bottom: 5px;
 }
 
 .other {
-  height: 40%;
+  height: 36%;
   width: 100%;
   white-space: nowrap;
 }
@@ -183,12 +189,12 @@ view {
 .other .item .top {
   width: 100%;
   height: 25%;
-  font-size: 48rpx;
+  font-size: 40rpx;
 }
 
 .other .item .middle {
   width: 100%;
-  height: 40%;
+  height: 36%;
 }
 
 .other .item .middle image {
@@ -205,5 +211,5 @@ view {
 .other .item .bottom {
   width: 100%;
   height: 25%;
-  font-size: 44rpx;
+  font-size: 36rpx;
 }
