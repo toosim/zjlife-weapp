@@ -81,15 +81,18 @@ Page({
       "大雨": "dayu.png",
       "暴雪": "baoxue.png",
       "暴雨": "baoyu.png",
-      "大到暴雨": "baoyu.png",
       "冰雹": "bingbao.png",
       "小雪": "xiaoxue.png",
-      "小雨": "xiaoyu.png",
       "阴": "yin.png",
       "雨夹雪": "yujiaxue.png",
       "阵雨": "zhenyu.png",
+      "雨": "xiaoyu.png",
+      "小雨": "xiaoyu.png",
       "中雨": "zhongyu.png",
-      "小到中雨": "zhongyu.png"
+      "小雨-中雨": "zhongyu.png",
+      "中雨-大雨": "dayu.png",
+      "大雨-暴雨": "baoyu.png",
+      "浮尘": "mai.png"
     };
     var background = {
       "大雨": "background-dayu",
@@ -104,7 +107,8 @@ Page({
       "雾": "background-wu",
       "小雪": "background-xue",
       "大雪": "background-xue",
-      "暴雪": "background-xue"
+      "暴雪": "background-xue",
+      "浮尘": "background-chen"
     };
 
     weather.city = city

@@ -34,12 +34,6 @@ view {
   background: linear-gradient(0deg, rgba(255, 59, 57, 1) 0%, rgba(255, 139, 45, 1) 100%);
 }
 
-.background-xiaoyu {
-  background-image: url('http://omiz2siz5.bkt.clouddn.com/zj-weapp/xiaoyu.jpg');
-  background-repeat: no-repeat;
-  background-size: cover;
-}
-
 .background-dayu {
   background-image: url('http://7xqhcq.com1.z0.glb.clouddn.com/zj-weapp/thunderstorm-358992_1280.jpg');
   background-repeat: no-repeat;
@@ -47,7 +41,7 @@ view {
 }
 
 .background-xiaoyu {
-  background-image: url('http://7xqhcq.com1.z0.glb.clouddn.com/zj-weapp/rain-985874_1280.jpg');
+  background-image: url('http://7xqhcq.com1.z0.glb.clouddn.com/zj-weapp/grass-2045793_1280.jpg');
   background-repeat: no-repeat;
   background-size: cover;
 }
@@ -84,6 +78,12 @@ view {
 
 .background-yin {
   background-image: url('http://omiz2siz5.bkt.clouddn.com/zj-weapp/yin.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.background-chen {
+  background-image: url('http://7xqhcq.com1.z0.glb.clouddn.com/zj-weapp/bb-8-1185956_1280.jpg');
   background-repeat: no-repeat;
   background-size: cover;
 }

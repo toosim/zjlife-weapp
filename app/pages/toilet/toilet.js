@@ -20,6 +20,8 @@ var object_toilet = {
   typecode: ''
 }
 
+var __hasReady = false;
+
 // toilet.js
 Page({
 
@@ -58,9 +60,16 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    var that = this
+    this.refreshControls()
+  },
 
-    that.refreshControls()
+  /**
+   * 生命周期函数--监听页面初次渲染完成
+   */
+  onReady: function () {
+    this.mapCtx = wx.createMapContext('bikeMap')
+
+    var that = this
 
     that.startLocate(function (res) {
       that.setData({
@@ -76,13 +85,8 @@ Page({
         that.createMarkers();
       })
     })
-  },
 
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
-    this.mapCtx = wx.createMapContext('bikeMap')
+    __hasReady = true
   },
 
   /**
@@ -115,7 +119,53 @@ Page({
 
   // 定位按钮点击
   controltap: function (e) {
-    this.moveToLocation()
+    console.log(e)
+
+    if (e.controlId == 1) {
+      this.moveToLocation()
+    }
+    else if (e.controlId == 3) {
+      var that = this
+
+      that.mapCtx.getCenterLocation({
+        success: function (res) {
+          console.log(res)
+
+          that.requestAroundToilet(res, function (result) {
+            that.setData({
+              dataArray: result
+            })
+
+            that.createMarkers()
+          })
+        }
+      })
+    }
+  },
+
+  // 拖动地图区域变化
+  bindregionchange: function (e) {
+    if (!__hasReady) {
+      return
+    }
+    
+    if (e.type == 'end') {
+      var that = this
+
+      that.mapCtx.getCenterLocation({
+        success: function (res) {
+          console.log(res)
+
+          that.requestAroundToilet(res, function (result) {
+            that.setData({
+              dataArray: result
+            })
+
+            that.createMarkers()
+          })
+        }
+      })
+    }
   },
 
   bindmarkertap: function (e) {
@@ -125,10 +175,10 @@ Page({
     var latitude = new Number(data.latitude)
     var longitude = new Number(data.longitude)
 
-    this.setData({
-      center_latitude: latitude.toFixed(6),
-      center_longitude: longitude.toFixed(6)
-    })
+    // this.setData({
+    //   center_latitude: latitude.toFixed(6),
+    //   center_longitude: longitude.toFixed(6)
+    // })
 
     wx.openLocation({
       latitude: latitude,
@@ -143,7 +193,7 @@ Page({
   },
 
   // 创建地图上的标注
-  createMarkers: function () {  
+  createMarkers: function () {
     var markers = []
     for (var i = 0; i < this.data.dataArray.length; i++) {
       var result = {
@@ -151,7 +201,7 @@ Page({
         latitude: 0,
         longitude: 0,
         iconPath: '/image/toilet/location_toilet.png',
-        height: 42,
+        height: 43,
         width: 36
       }
 
@@ -201,6 +251,11 @@ Page({
 
             callback(result)
           }
+
+          wx.showToast({
+            title: '附近有' + res.data.count + '家厕所',
+            duration: 2000
+          })
         } else {
           wx.showToast({
             title: res.data.info,
@@ -245,6 +300,13 @@ Page({
   refreshControls: function () {
     var res = wx.getSystemInfoSync()
 
+    var pinControl = {
+      id: 2,
+      iconPath: '/image/toilet/location_pin.png',
+      position: { left: (res.windowWidth - 20) / 2.0, top: (res.windowHeight - 20*372/171.0) / 2.0 - 25, width: 20, height: 20*372/171.0 },
+      clickable: false
+    }
+
     var locateControl = {
       id: 1,
       iconPath: '/image/toilet/location_control.png',
@@ -257,9 +319,23 @@ Page({
       clickable: true
     }
 
+    var refreshControl = {
+      id: 3,
+      iconPath: '/image/toilet/location_refresh.png',
+      position: {
+        left: 10,
+        top: res.windowHeight - 180,
+        width: 40,
+        height: 40
+      },
+      clickable: true
+    }
+
     this.setData({
       controls: [
-        locateControl
+        pinControl,
+        locateControl,
+        refreshControl
       ]
     })
   },

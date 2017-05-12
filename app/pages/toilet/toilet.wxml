@@ -1,4 +1,4 @@
 <!--toilet.wxml-->
     <map id="bikeMap" show-location style="width: 100%; height: 100%;" scale="14" latitude="{{center_latitude}}" longitude="{{center_longitude}}" markers="{{markers}}" controls="{{controls}}" include-points="{{include_points}}" bindcontroltap="controltap"
-      bindmarkertap="bindmarkertap">
+      bindmarkertap="bindmarkertap" bindregionchange="bindregionchange">
     </map>
