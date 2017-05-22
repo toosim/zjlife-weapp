@@ -58,7 +58,8 @@ Page({
             wx.request({
                 url: config.service.requestUrl + '/express/ebusinessOrderHandle',
                 data: {
-                    RequestData: requestData
+                    RequestData: requestData,
+                    RequestType: '1002'
                 },
                 method: 'POST',
                 header: {
@@ -70,7 +71,9 @@ Page({
                     if (res.statusCode != 200) {
                       wx.showModal({
                         title: '提示',
-                        content: '服务器错误'
+                        content: '服务器错误',
+                        showCancel: false,
+                        confirmText: '我知道了'
                       })
 
                       return;

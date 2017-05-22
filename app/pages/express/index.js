@@ -25,6 +25,35 @@ Page({
     this.showHistory();
   },
 
+  /**
+   * 用户点击右上角分享
+   */
+  onShareAppMessage: function () {
+    return {
+      title: '致简生活',
+      desc: '让你的生活，像呼吸一样简单！',
+      path: '/pages/index/index',
+      success: function (res) {
+        // 分享成功
+        wx.showModal({
+          title: '分享成功',
+          content: '感谢您的支持',
+          showCancel: false,
+          confirmText: '我知道了'
+        })
+      },
+      fail: function (res) {
+        // 分享失败
+        wx.showModal({
+          title: '温馨提示',
+          content: '分享失败',
+          showCancel: false,
+          confirmText: '我知道了'
+        })
+      }
+    }
+  },
+
   formSubmit: function (e) {
     let eorder = util.trim(e.detail.value.expressorder);
 
@@ -34,6 +63,7 @@ Page({
         title: '提示',
         content: '快递单号不能为空！',
         showCancel: false,
+        confirmText: '我知道了',
         success: function (res) {
           if (res.confirm) {
             self.setData({
@@ -93,6 +123,7 @@ Page({
             title: '提示',
             content: '快递单号不能为空！',
             showCancel: false,
+            confirmText: '我知道了',
             success: function (res) {
               if (res.confirm) {
                 self.setData({
@@ -141,7 +172,7 @@ Page({
             data: newList,
             success: function () {
               wx.navigateTo({
-                url: '../detail/detail?LogisticCode=' + LogisticCode + '&ShipperCode=' + ShipperCode + '&ShipperName=' + ShipperName
+                url: '../express/detail?LogisticCode=' + LogisticCode + '&ShipperCode=' + ShipperCode + '&ShipperName=' + ShipperName
               })
             }
           })
@@ -222,7 +253,8 @@ Page({
       wx.request({
         url: config.service.requestUrl + '/express/ebusinessOrderHandle',
         data: {
-          RequestData: requestData
+          RequestData: requestData,
+          RequestType: '2002'
         },
         method: 'POST',
         header: {
@@ -232,7 +264,9 @@ Page({
           if (res.statusCode != 200) {
             wx.showModal({
               title: '提示',
-              content: '服务器错误'
+              content: '服务器错误',
+              showCancel: false,
+              confirmText: '我知道了'
             })
             
             return;
@@ -269,7 +303,7 @@ Page({
                 data: newList,
                 success: function () {
                   wx.navigateTo({
-                    url: '../detail/detail?LogisticCode=' + LogisticCode + '&ShipperCode=' + ShipperCode + '&ShipperName=' + ShipperName
+                    url: '../express/detail?LogisticCode=' + LogisticCode + '&ShipperCode=' + ShipperCode + '&ShipperName=' + ShipperName
                   })
                 }
               })
@@ -294,8 +328,8 @@ Page({
               wx.showModal({
                 title: '提示',
                 content: '暂时没有查到该单号',
-                success: function (res) {
-                }
+                showCancel: false,
+                confirmText: '我知道了'
               })
 
               return;

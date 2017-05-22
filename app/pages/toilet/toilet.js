@@ -31,6 +31,7 @@ Page({
   data: {
     center_latitude: 31.068912,
     center_longitude: 121.390621,
+    old_center: {},
     markers: [{
       id: 999,
       latitude: 31.068912,
@@ -114,7 +115,29 @@ Page({
    * 用户点击右上角分享
    */
   onShareAppMessage: function () {
-
+    return {
+      title: '致简生活',
+      desc: '让你的生活，像呼吸一样简单！',
+      path: '/pages/index/index',
+      success: function (res) {
+        // 分享成功
+        wx.showModal({
+          title: '分享成功',
+          content: '感谢您的支持',
+          showCancel: false,
+          confirmText: '我知道了'
+        })
+      },
+      fail: function (res) {
+        // 分享失败
+        wx.showModal({
+          title: '温馨提示',
+          content: '分享失败',
+          showCancel: false,
+          confirmText: '我知道了'
+        })
+      }
+    }
   },
 
   // 定位按钮点击
@@ -145,6 +168,8 @@ Page({
 
   // 拖动地图区域变化
   bindregionchange: function (e) {
+    console.log(e)
+    
     if (!__hasReady) {
       return
     }
@@ -155,6 +180,17 @@ Page({
       that.mapCtx.getCenterLocation({
         success: function (res) {
           console.log(res)
+
+          // 判断旧中心点和新中心点的距离
+          var old_center = that.data.old_center
+          if (Math.abs(old_center.latitude - res.latitude) < 0.005 || 
+              Math.abs(old_center.longitude - res.longitude) < 0.005) {
+            return
+          }
+
+          that.setData({
+            old_center: res
+          })
 
           that.requestAroundToilet(res, function (result) {
             that.setData({
@@ -234,6 +270,12 @@ Page({
       },
       success: function (res) {
         if (res.statusCode != 200) {
+          wx.showModal({
+            title: '提示',
+            content: '服务器错误',
+            showCancel: false,
+            confirmText: '我知道了'
+          })
           return;
         }
 

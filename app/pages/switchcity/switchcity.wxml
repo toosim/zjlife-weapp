@@ -11,7 +11,7 @@
       {{showLetter}}
     </view>
   </block>
-  <scroll-view scroll-y="true" style="height: 100%;" scroll-into-view="{{scrollTopId}}" scroll-top="{{scrollTop}}">
+  <scroll-view scroll-y="true" style="height: {{winHeight}}px;" scroll-into-view="{{scrollTopId}}" scroll-top="{{scrollTop}}">
     <view class="hotcity-common thisCity">当前选择城市</view>
     <view class="thisCityName">{{city}}</view>
     <view>
