@@ -1,4 +1,5 @@
 /**index.wxss**/
+
 page {
   background: #fff;
   height: 100%;
@@ -100,11 +101,7 @@ view {
   left: 0;
   width: 100%;
   padding: 5px 10px;
-  /*background:rgba(0, 0, 0, 0.4) none repeat scroll 0 0 !important;*/
-  /* for IE */
-  /*filter:alpha(opacity=60);*/
-  /* CSS3 standard */
-  /*opacity:0.6;*/
+  /*background:rgba(0, 0, 0, 0.4) none repeat scroll 0 0 !important;*//* for IE *//*filter:alpha(opacity=60);*//* CSS3 standard *//*opacity:0.6;*/
 }
 
 .today .top .range {
@@ -115,7 +112,15 @@ view {
 
 .today .top .refresh {
   float: right;
+  margin-right: 5px;
   line-height: 20px;
+}
+
+.today .top .avatar {
+  float: right;
+  height: 40px;
+  width: 40px;
+  border-radius: 20px;
 }
 
 .today .top .refresh image {
@@ -155,6 +160,8 @@ view {
   font-size: 108rpx;
   float: left;
   text-align: left;
+  bottom: 0;
+  position: absolute;
 }
 
 .today .bottom .city-day {
@@ -168,8 +175,13 @@ view {
 
 .today .bottom .city-day .city {
   font-size: 35rpx;
-  margin-top: 5px;
-  margin-bottom: 5px;
+  margin-top: 2px;
+  margin-bottom: 2px;
+}
+
+.today .bottom .city-day .update-time {
+  font-size: 25rpx;
+  margin-bottom: 20rpx;
 }
 
 .other {

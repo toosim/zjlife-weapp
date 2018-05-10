@@ -251,7 +251,7 @@ Page({
       let requestData = "{\"LogisticCode\":\"" + eorder + "\"}";
 
       wx.request({
-        url: config.service.requestUrl + '/express/ebusinessOrderHandle',
+        url: config.urls.expressUrl,
         data: {
           RequestData: requestData,
           RequestType: '2002'

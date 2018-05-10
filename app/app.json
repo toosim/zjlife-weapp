@@ -1,13 +1,13 @@
 {
-  "pages":[
+  "pages": [
     "pages/index/index",
     "pages/switchcity/switchcity",
     "pages/express/index",
     "pages/express/detail",
     "pages/toilet/toilet"
   ],
-  "window":{
-    "backgroundTextStyle":"light",
+  "window": {
+    "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#2d2f3b",
     "navigationBarTitleText": "致简生活",
     "navigationBarTextStyle": "white"

@@ -260,7 +260,7 @@ Page({
   // 请求附近厕所数据
   requestAroundToilet: function (location, callback) {
     wx.request({
-      url: config.service.requestUrl + '/toilet/around',
+      url: config.urls.toiletUrl,
       method: 'POST',
       header: {
         'content-type': 'application/x-www-form-urlencoded;charset=utf-8'

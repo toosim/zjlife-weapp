@@ -2,19 +2,21 @@
  * 配置文件 
  */
 
-var host = "https://tolife.yuhanle.com"
-// var host = "http://127.0.0.1:8082"
+var host = "https://tolife.yuhanle.com/v1"
+// var host = "http://127.0.0.1:8082/v1"
 
 var config = {
-
-  service: {
-    host,
-
-    requestUrl: `${host}/v1`,
+  urls: {
+    weatherUrl: `${host}` + '/weather/weatherInfo',
+    toiletUrl: `${host}` + '/toilet/around',
+    expressUrl: `${host}` + '/express/ebusinessOrderHandle',
+    loginUrl: `${host}` + '/user/login',
+    updateUrl: `${host}` + '/user/update',
+    userinfoUrl: `${host}` + '/user/info',
   },
-
-  app: {
-    appid: `wx9610498a65ffedca`,
+  notis: {
+    swicthCity: 'citySelectedNotificatione',
+    loginSuccess: 'loginSuccessNotificatione'
   }
 };
 

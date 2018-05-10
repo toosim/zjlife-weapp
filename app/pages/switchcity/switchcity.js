@@ -1,5 +1,6 @@
 var WxNotificationCenter = require("../../utils/WxNotificationCenter.js")
 var city = require('../../utils/city.js')
+var config = require('../../config.js')
 var app = getApp()
 
 Page({
@@ -107,7 +108,7 @@ Page({
     app.appData.selectedCity = data.city
     app.appData.selectedCityCode = data.selectedCityCode
 
-    WxNotificationCenter.postNotificationName("citySelectedNotificatione")
+    WxNotificationCenter.postNotificationName(config.notis.swicthCity)
 
     wx.navigateBack({
       delta: 1, // 回退前 delta(默认为1) 页面

@@ -9,13 +9,32 @@ var config = require('../../config.js')
 Page({
   data: {
     Loadinghidden: false,
-    currentCity: '上海市'
+    currentCity: '上海市',
+    userInfo: {}
   },
   onLoad: function () {
     var that = this
+    
     that.loadWeather()
+    that.loadUserInfo()
 
-    WxNotificationCenter.addNotification("citySelectedNotificatione", that.loadWeather, that)
+    WxNotificationCenter.addNotification(config.notis.loginSuccess, that.loadUserInfo, that)
+    WxNotificationCenter.addNotification(config.notis.swicthCity, that.loadWeather, that)
+  },
+  loadUserInfo: function () {
+    var that = this
+    var token = wx.getStorageSync("token")
+    if (token.length) {
+      wx.request({
+        url: config.urls.userinfoUrl,
+        method: 'POST',
+        data: { token: token },
+        success: function (res) {
+          console.log(res.data)
+          that.setData({ userInfo: res.data.data.userinfo })
+        }
+      })
+    }
   },
   refresh: function () {
     this.loadWeather()
@@ -115,7 +134,7 @@ Page({
     weather.location = locationText
 
     wx.request({
-      url: config.service.requestUrl + '/weather/weatherInfo',
+      url: config.urls.weatherUrl,
       method: 'GET',
       data: {
         'city': city
@@ -128,7 +147,7 @@ Page({
           that.setData({
             Loadinghidden: true
           })
-          
+
           wx.showModal({
             title: '提示',
             content: '服务器错误',
@@ -142,21 +161,22 @@ Page({
         var data = res.data
         if (data.code == 10000) {
           var today = {}
-          today.wendu = data.data.live.temperature          //温度
-          var forecast = data.data.forecasts      //天气特征与未来天气
-          var todayLive = data.data.live  // 今天的实时天气
-          var todayWeather = forecast[0]         //今天的天气
-          today.low = todayWeather.nighttemp + "℃"    //最低温
-          today.high = todayWeather.daytemp + "℃"  //最高温
+          today.wendu = data.data.live.temperature  //温度
+          var forecast = data.data.forecasts        //天气特征与未来天气
+          var todayLive = data.data.live            // 今天的实时天气
+          var todayWeather = forecast[0]            //今天的天气
+          today.low = todayWeather.nighttemp + "℃"  //最低温
+          today.high = todayWeather.daytemp + "℃"   //最高温
           var typeText = todayLive.weather
-          today.typeText = typeText                     //天气类型说明
-          today.week = todayWeather.week       //星期几
-          today.typeIcon = typeIcon[typeText]           //天气类型图片
+          today.typeText = typeText                 //天气类型说明
+          today.week = todayWeather.week            //星期几
+          today.typeIcon = typeIcon[typeText]       //天气类型图片
           if (background[typeText]) {
             today.typeBackgorund = background[typeText]
           } else {
             today.typeBackgorund = "background-default"
           }
+          today.reporttime = data.data.reporttime
           weather.today = today
 
           //下周天气、未来天气

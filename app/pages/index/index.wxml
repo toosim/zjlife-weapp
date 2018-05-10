@@ -1,13 +1,13 @@
-
 <!--index.wxml-->
 <view class="container">
   <view class="weather-card">
     <view class="today {{weather.today.typeBackgorund}}">
       <view class="top">
         <view class="range" wx:if="{{weather.today}}">{{weather.today.low}} ~ {{weather.today.high}}</view>
-        <view class="refresh" bindtap="refresh">
+        <image class='avatar' src='{{userInfo.avatar}}'></image>
+        <!-- <view class="refresh" bindtap="refresh">
           <image src="../../image/white/refesh.png"></image>
-        </view>
+        </view> -->
       </view>
       <view class="middle">
         <image wx:if="{{weather.today.typeIcon.length > 0}}" src="../../image/white/{{weather.today.typeIcon}}"></image>
@@ -18,18 +18,19 @@
         <view class="city-day">
           <view class="day">{{weather.today.week}}</view>
           <view class="city" bindtap="switchCity">{{weather.location}}</view>
+          <view class="update-time">{{weather.today.reporttime}} 发布</view>
         </view>
       </view>
     </view>
     <view class="other">
-        <view wx:for="{{weather.futureList}}" wx:key="futureList" class="item">
-          <view class="top aligncenter">{{item.week}}</view>
-          <view class="middle aligncenter">
-            <image wx:if="{{item.type.length > 0}}" src="../../image/black/{{item.type}}"></image>
-          </view>
-          <view class="futuretype-text">{{item.typeTetx}}</view>
-          <view class="bottom aligncenter">{{item.wendu}}</view>
+      <view wx:for="{{weather.futureList}}" wx:key="futureList" class="item">
+        <view class="top aligncenter">{{item.week}}</view>
+        <view class="middle aligncenter">
+          <image wx:if="{{item.type.length > 0}}" src="../../image/black/{{item.type}}"></image>
         </view>
+        <view class="futuretype-text">{{item.typeTetx}}</view>
+        <view class="bottom aligncenter">{{item.wendu}}</view>
+      </view>
     </view>
   </view>
   <loading hidden="{{Loadinghidden}}">
