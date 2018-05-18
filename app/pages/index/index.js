@@ -5,6 +5,7 @@ var amapKey = '356499998b0159a49c7468a6301a5efc'
 var amapFile = require('../../utils/amap-wx.js')
 var WxNotificationCenter = require("../../utils/WxNotificationCenter.js")
 var config = require('../../config.js')
+var tolife = require("../../utils/request.js")
 
 Page({
   data: {
@@ -25,13 +26,15 @@ Page({
     var that = this
     var token = wx.getStorageSync("token")
     if (token.length) {
-      wx.request({
+      tolife.request({
         url: config.urls.userinfoUrl,
-        method: 'POST',
         data: { token: token },
         success: function (res) {
-          console.log(res.data)
-          that.setData({ userInfo: res.data.data.userinfo })
+          if (res.data.data.userinfo) {
+            that.setData({ userInfo: res.data.data.userinfo })
+          }else {
+            wx.removeStorageSync("token")
+          }
         }
       })
     }
@@ -133,7 +136,7 @@ Page({
     weather.city = city
     weather.location = locationText
 
-    wx.request({
+    tolife.request({
       url: config.urls.weatherUrl,
       method: 'GET',
       data: {

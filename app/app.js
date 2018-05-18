@@ -1,5 +1,6 @@
 var config = require('./config.js')
 var WxNotificationCenter = require("./utils/WxNotificationCenter.js")
+var tolife = require("./utils/request.js")
 
 App({
   onLaunch: function () {
@@ -11,9 +12,8 @@ App({
     var that = this
     this.getUserInfo(function (userinfo) {
       var data = { wuAuth: { code: userinfo.code } }
-      wx.request({
+      tolife.request({
         url: config.urls.loginUrl,
-        method: 'POST',
         data: data,
         success: function (res) {
           that.globalData.token = res.data.data.token
@@ -47,12 +47,7 @@ App({
       //调用登录接口
       wx.login({
         success: function (info) {
-          wx.getUserInfo({
-            success: function (res) {
-              res.userInfo.code = info.code
-              typeof cb == "function" && cb(res.userInfo)
-            }
-          })
+          typeof cb == "function" && cb(info)
         }
       })
     }

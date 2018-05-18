@@ -1,4 +1,5 @@
 var config = require('../../config.js');
+var tolife = require("../../utils/request.js")
 
 var object_toilet = {
   address: '',
@@ -259,7 +260,7 @@ Page({
 
   // 请求附近厕所数据
   requestAroundToilet: function (location, callback) {
-    wx.request({
+    tolife.request({
       url: config.urls.toiletUrl,
       method: 'POST',
       header: {
@@ -278,8 +279,6 @@ Page({
           })
           return;
         }
-
-        console.log(res)
 
         if (res.data.infocode == 10000) {
           if (callback) {
@@ -300,7 +299,7 @@ Page({
           })
         } else {
           wx.showToast({
-            title: res.data.info,
+            title: res.data.desc,
           })
         }
       },

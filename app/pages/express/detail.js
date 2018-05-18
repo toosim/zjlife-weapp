@@ -1,6 +1,7 @@
 var Util = require('../../utils/util.js');
 var MockData = require('../../utils/mockdata.js');
 var config = require('../../config.js');
+var tolife = require("../../utils/request.js")
 
 Page({
   data: {
@@ -55,7 +56,7 @@ Page({
     } else {
       let requestData = "{\"ShipperCode\":\"" + data.ShipperCode + "\",\"LogisticCode\":\"" + data.LogisticCode + "\"}";
 
-      wx.request({
+      tolife.request({
         url: config.urls.expressUrl,
         data: {
           RequestData: requestData,

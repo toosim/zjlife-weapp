@@ -3,6 +3,7 @@ var MD5 = require('../../utils/md5.min.js');
 var util = require('../../utils/util.js');
 var MockData = require('../../utils/mockdata.js');
 var config = require('../../config.js');
+var tolife = require("../../utils/request.js")
 
 Page({
   data: {
@@ -250,7 +251,7 @@ Page({
 
       let requestData = "{\"LogisticCode\":\"" + eorder + "\"}";
 
-      wx.request({
+      tolife.request({
         url: config.urls.expressUrl,
         data: {
           RequestData: requestData,
