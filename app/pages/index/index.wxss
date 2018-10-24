@@ -36,55 +36,55 @@ view {
 }
 
 .background-dayu {
-  background-image: url('http://7xqhcq.com1.z0.glb.clouddn.com/zj-weapp/thunderstorm-358992_1280.jpg');
+  background-image: url('http://cdn.yuhanle.com/zj-weapp/thunderstorm-358992_1280.jpg');
   background-repeat: no-repeat;
   background-size: cover;
 }
 
 .background-xiaoyu {
-  background-image: url('http://7xqhcq.com1.z0.glb.clouddn.com/zj-weapp/grass-2045793_1280.jpg');
+  background-image: url('http://cdn.yuhanle.com/zj-weapp/grass-2045793_1280.jpg');
   background-repeat: no-repeat;
   background-size: cover;
 }
 
 .background-leizhenyu {
-  background-image: url('http://7xqhcq.com1.z0.glb.clouddn.com/zj-weapp/lightning-2102435_1920.jpg');
+  background-image: url('http://cdn.yuhanle.com/zj-weapp/lightning-2102435_1920.jpg');
   background-repeat: no-repeat;
   background-size: cover;
 }
 
 .background-qing {
-  background-image: url('http://omiz2siz5.bkt.clouddn.com/zj-weapp/qing2.jpg');
+  background-image: url('http://cdn.yuhanle.com/zj-weapp/qing2.jpg');
   background-repeat: no-repeat;
   background-size: cover;
 }
 
 .background-duoyun {
-  background-image: url('http://omiz2siz5.bkt.clouddn.com/zj-weapp/duoyun2.jpg');
+  background-image: url('http://cdn.yuhanle.com/zj-weapp/duoyun2.jpg');
   background-repeat: no-repeat;
   background-size: cover;
 }
 
 .background-xue {
-  background-image: url('http://omiz2siz5.bkt.clouddn.com/zj-weapp/xue.jpg');
+  background-image: url('http://cdn.yuhanle.com/zj-weapp/xue.jpg');
   background-repeat: no-repeat;
   background-size: cover;
 }
 
 .background-wu {
-  background-image: url('http://omiz2siz5.bkt.clouddn.com/zj-weapp/wu.jpg');
+  background-image: url('http://cdn.yuhanle.com/zj-weapp/wu.jpg');
   background-repeat: no-repeat;
   background-size: cover;
 }
 
 .background-yin {
-  background-image: url('http://omiz2siz5.bkt.clouddn.com/zj-weapp/yin.jpg');
+  background-image: url('http://cdn.yuhanle.com/zj-weapp/yin.jpg');
   background-repeat: no-repeat;
   background-size: cover;
 }
 
 .background-chen {
-  background-image: url('http://7xqhcq.com1.z0.glb.clouddn.com/zj-weapp/bb-8-1185956_1280.jpg');
+  background-image: url('http://cdn.yuhanle.com/zj-weapp/bb-8-1185956_1280.jpg');
   background-repeat: no-repeat;
   background-size: cover;
 }
