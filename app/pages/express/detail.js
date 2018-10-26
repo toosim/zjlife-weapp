@@ -39,7 +39,7 @@ Page({
       resData.Traces = resData.Traces.sort(function (a, b) {
         let atime = Date.parse(a.AcceptTime);
         let btime = Date.parse(b.AcceptTime);
-        return btime - atime;
+        return atime - btime;
       });
       console.info(self.data.expressOrder);
       resData.LogoSrc = Util.mapLogo(self.data.expressCode);
